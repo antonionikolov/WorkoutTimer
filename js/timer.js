@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	var avaliableTimers = [
+	var workoutTime = [
 		{minutes: '0', seconds: '30'},
 		{minutes: '1', seconds: '00'},
 		{minutes: '1', seconds: '30'},
@@ -7,16 +7,31 @@ $(document).ready(function() {
 		{minutes: '2', seconds: '30'},
 		{minutes: '3', seconds: '00'}
 	];
-	for (var i = 0; i < avaliableTimers.length; i++) {
-		$('#time').append("<option value=" + i + ">" + avaliableTimers[i].minutes + ":" + avaliableTimers[i].seconds + "</option>");
-	}
+	var restTime = [
+		{minutes: '0', seconds: '10'},
+		{minutes: '0', seconds: '15'},
+		{minutes: '0', seconds: '30'},
+		{minutes: '0', seconds: '45'},
+		{minutes: '1', seconds: '00'},
+		{minutes: '2', seconds: '00'}
+	];
+	setTimeInterval(workoutTime, '#time');
+	setTimeInterval(restTime, '#timeRest');
 	$('#time').change(function() {
 		var i = $(this).val();
-		$('#timer').text(avaliableTimers[i].minutes + ':' + avaliableTimers[i].seconds);
+		$('#timer').text(workoutTime[i].minutes + ':' + workoutTime[i].seconds);
 	});
 	$('#start').click(function() {
 		var selectedTimer = $('#time option:selected').val();
-		Slider.Start(avaliableTimers[selectedTimer].minutes, avaliableTimers[selectedTimer].seconds);
+		var selectedRest = $('#timeRest option:selected').val();
+		var workoutDuration = [
+			workoutTime[selectedTimer],
+			restTime[selectedRest],
+			workoutTime[selectedTimer],
+			restTime[selectedRest],
+			workoutTime[selectedTimer]
+		];
+		Slider.Start(workoutDuration);
 		$('#start').attr('disabled', true);
 	});
 	$('#stop').click(function() {
@@ -27,14 +42,21 @@ $(document).ready(function() {
 
 var Slider = {
 	slider: null,
-	Start: function(minutes, seconds) {
-		$('#timer').text(minutes + ':' + seconds);
+	Start: function(workoutDuration) {
+		var singleTimer = workoutDuration.pop();
+		var minutes = singleTimer.minutes;
+		var seconds = singleTimer.seconds;
 		this.slider = setInterval(function(){ myTimer() }, 1000);
+		$('#timer').text(minutes + ':' + seconds);
 		var that = this;
 		function myTimer() {
-			if (minutes == 0 && seconds == 0) {
+			if ( workoutDuration.length == 0 && minutes == 0 && seconds == 0) {
 				that.Stop();
 				$('#start').attr('disabled', false);
+			} else if (minutes == 0 && seconds == 0) {
+				singleTimer = workoutDuration.pop();
+				minutes = singleTimer.minutes;
+				seconds = singleTimer.seconds;
 			} else if (seconds == 0) {
 				minutes -= 1;
 				seconds = 59;
@@ -48,3 +70,9 @@ var Slider = {
 		window.clearTimeout(this.slider);
 	}
 };
+
+function setTimeInterval(intervals, id) {
+	for (var i = 0; i < intervals.length; i++) {
+		$(id).append("<option value=" + i + ">" + intervals[i].minutes + ":" + intervals[i].seconds + "</option>");
+	}
+}
