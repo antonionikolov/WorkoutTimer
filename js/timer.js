@@ -1,36 +1,41 @@
+var exerciseTime = [
+	{minutes: '0', seconds: '30'},
+	{minutes: '1', seconds: '00'},
+	{minutes: '1', seconds: '30'},
+	{minutes: '2', seconds: '00'},
+	{minutes: '2', seconds: '30'},
+	{minutes: '3', seconds: '00'}
+];
+var exerciseRest = [
+	{minutes: '0', seconds: '10'},
+	{minutes: '0', seconds: '15'},
+	{minutes: '0', seconds: '30'},
+	{minutes: '0', seconds: '45'},
+	{minutes: '1', seconds: '00'},
+	{minutes: '2', seconds: '00'}
+];
+var restRound = [
+	{minutes: '0', seconds: '30'},
+	{minutes: '1', seconds: '00'},
+	{minutes: '1', seconds: '30'},
+	{minutes: '2', seconds: '00'},
+	{minutes: '3', seconds: '00'},
+	{minutes: '4', seconds: '00'}
+];
+
 $(document).ready(function() {
-	var workoutTime = [
-		{minutes: '0', seconds: '30'},
-		{minutes: '1', seconds: '00'},
-		{minutes: '1', seconds: '30'},
-		{minutes: '2', seconds: '00'},
-		{minutes: '2', seconds: '30'},
-		{minutes: '3', seconds: '00'}
-	];
-	var restTime = [
-		{minutes: '0', seconds: '10'},
-		{minutes: '0', seconds: '15'},
-		{minutes: '0', seconds: '30'},
-		{minutes: '0', seconds: '45'},
-		{minutes: '1', seconds: '00'},
-		{minutes: '2', seconds: '00'}
-	];
-	setTimeInterval(workoutTime, '#time');
-	setTimeInterval(restTime, '#timeRest');
-	$('#time').change(function() {
+	setTimeInterval(exerciseTime, '#exerciseTime');
+	setTimeInterval(exerciseRest, '#exerciseRest');
+	setTimeInterval(restRound, '#restRound');
+	setCount(10, '#rounds');
+	setCount(10, '#exercises');
+	$('#exerciseTime').change(function() {
 		var i = $(this).val();
-		$('#timer').text(workoutTime[i].minutes + ':' + workoutTime[i].seconds);
+		$('#timer').text(exerciseTime[i].minutes + ':' + exerciseTime[i].seconds);
 	});
 	$('#start').click(function() {
-		var selectedTimer = $('#time option:selected').val();
-		var selectedRest = $('#timeRest option:selected').val();
-		var workoutDuration = [
-			workoutTime[selectedTimer],
-			restTime[selectedRest],
-			workoutTime[selectedTimer],
-			restTime[selectedRest],
-			workoutTime[selectedTimer]
-		];
+		var workoutDuration = setWorkout();
+		console.log(workoutDuration);
 		Slider.Start(workoutDuration);
 		$('#start').attr('disabled', true);
 	});
@@ -75,4 +80,31 @@ function setTimeInterval(intervals, id) {
 	for (var i = 0; i < intervals.length; i++) {
 		$(id).append("<option value=" + i + ">" + intervals[i].minutes + ":" + intervals[i].seconds + "</option>");
 	}
+}
+
+function setCount(to, id) {
+	for (var i = 1; i < to + 1; i++) {
+		$(id).append("<option value=" + i + ">" + i + "</option>");
+	}
+}
+
+function setWorkout() {
+	var workoutDuration = [],
+		exerciseTimeI = $('#exerciseTime option:selected').val(),
+		exerciseRestI = $('#exerciseRest option:selected').val(),
+		restRoundI = $('#restRound option:selected').val(),
+		rounds = $('#rounds option:selected').val(),
+		exercises = $('#exercises option:selected').val();
+
+	for (var i = 0; i < rounds; i++) {
+		for (var j = 0; j < exercises; j++) {
+			workoutDuration.push(exerciseTime[exerciseTimeI]);
+			workoutDuration.push(exerciseRest[exerciseRestI]);
+		}
+		workoutDuration.pop();
+		workoutDuration.push(restRound[restRoundI]);
+	}
+	workoutDuration.pop();
+	console.log(workoutDuration);
+	return workoutDuration;
 }

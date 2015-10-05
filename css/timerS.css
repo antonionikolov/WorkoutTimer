@@ -31,6 +31,13 @@
 	top: 200px;
 }
 
+#setUp {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	right: 20px;
+}
+
 .time {
 	background: transparent;
 	position: relative;
@@ -41,4 +48,9 @@
 	border-radius: 0;
 	height: 34px;
 	border-color: #A0A0A0;
+}
+
+.timeLabel {
+	position: relative;
+	top: 150px;
 }

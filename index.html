@@ -9,10 +9,28 @@
 		<script type="text/javascript" src="js/timer.js"></script>
 	</head>
 	<body id="banner">
-		<div id="timeS">
-			<select id="time" class="time"></select>
-			<select id="timeRest" class="time"></select>
-		</div>
+		<table id="setUp">
+			<tr>
+				<td align='right'><label class="timeLabel">Rounds:</label></td>
+				<td align='right'><select id="rounds" class="time"></select></td>
+			</tr>
+			<tr>
+				<td align='right'><label class="timeLabel">Exercises:</label></td>
+				<td align='right'><select id="exercises" class="time"></select></td>
+			</tr>
+			<tr>
+				<td align='right'><label class="timeLabel">Exercise time:</label></td>
+				<td align='right'><select id="exerciseTime" class="time"></select></td>
+			</tr>
+			<tr>
+				<td align='right'><label class="timeLabel">Rest:</label></td>
+				<td align='right'><select id="exerciseRest" class="time"></select></td>
+			</tr>
+			<tr>
+				<td align='right'><label class="timeLabel">Rest between rounds:</label></td>
+				<td align='right'><select id="restRound" class="time"></select></td>
+			</tr>
+		</table>
 	    <div>
 	    	<button id="start" class="pure-button pure-button-active">Start</button>
 	    	<button id="stop" class="pure-button pure-button-active">Stop</button>
