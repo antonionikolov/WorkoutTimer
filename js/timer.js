@@ -35,7 +35,6 @@ $(document).ready(function() {
 	});
 	$('#start').click(function() {
 		var workoutDuration = setWorkout();
-		console.log(workoutDuration);
 		TimeSlider.Start(workoutDuration);
 		$('#start').attr('disabled', true);
 	});
@@ -58,12 +57,12 @@ function setCount(to, id) {
 }
 
 function setWorkout() {
-	var workoutDuration = [],
-		exerciseTimeI = $('#exerciseTime option:selected').val(),
-		exerciseRestI = $('#exerciseRest option:selected').val(),
-		restRoundI = $('#restRound option:selected').val(),
-		rounds = $('#rounds option:selected').val(),
-		exercises = $('#exercises option:selected').val();
+	var	workoutDuration = [],
+		exerciseTimeI   = $('#exerciseTime option:selected').val(),
+		exerciseRestI   = $('#exerciseRest option:selected').val(),
+		restRoundI      = $('#restRound option:selected').val(),
+		rounds          = $('#rounds option:selected').val(),
+		exercises       = $('#exercises option:selected').val();
 
 	for (var i = 0; i < rounds; i++) {
 		for (var j = 0; j < exercises; j++) {
@@ -74,6 +73,5 @@ function setWorkout() {
 		workoutDuration.push(restRound[restRoundI]);
 	}
 	workoutDuration.pop();
-	console.log(workoutDuration);
 	return workoutDuration;
 }

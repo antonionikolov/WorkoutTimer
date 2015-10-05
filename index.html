@@ -1,43 +1,66 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Timer</title>
-		<link href="css/timerS.css" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-		<script type="text/javascript" src="js/jquery.js"></script>
-		<script type="text/javascript" src="js/TimeSlider.js"></script>
-		<script type="text/javascript" src="js/timer.js"></script>
-	</head>
-	<body id="banner">
-		<table id="setUp">
-			<tr>
-				<td align='right'><label class="timeLabel">Rounds:</label></td>
-				<td align='right'><select id="rounds" class="time"></select></td>
-			</tr>
-			<tr>
-				<td align='right'><label class="timeLabel">Exercises:</label></td>
-				<td align='right'><select id="exercises" class="time"></select></td>
-			</tr>
-			<tr>
-				<td align='right'><label class="timeLabel">Exercise time:</label></td>
-				<td align='right'><select id="exerciseTime" class="time"></select></td>
-			</tr>
-			<tr>
-				<td align='right'><label class="timeLabel">Rest:</label></td>
-				<td align='right'><select id="exerciseRest" class="time"></select></td>
-			</tr>
-			<tr>
-				<td align='right'><label class="timeLabel">Rest between rounds:</label></td>
-				<td align='right'><select id="restRound" class="time"></select></td>
-			</tr>
-		</table>
-	    <div>
-	    	<button id="start" class="pure-button pure-button-active">Start</button>
-	    	<button id="stop" class="pure-button pure-button-active">Stop</button>
-	    </div>
-	    <div>
-			<p><span id="timer">0:30</span></p>
-		</div>
-	</body>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Timer</title>
+    <link href="css/timerS.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/TimeSlider.js"></script>
+    <script type="text/javascript" src="js/timer.js"></script>
+</head>
+
+<body id="banner">
+    <table id="setUp">
+        <tr>
+            <td align='right'>
+                <label class="timeLabel">Rounds:</label>
+            </td>
+            <td align='left'>
+                <select id="rounds" class="time"></select>
+            </td>
+        </tr>
+        <tr>
+            <td align='right'>
+                <label class="timeLabel">Exercises:</label>
+            </td>
+            <td align='left'>
+                <select id="exercises" class="time"></select>
+            </td>
+        </tr>
+        <tr>
+            <td align='right'>
+                <label class="timeLabel">Exercise time:</label>
+            </td>
+            <td align='left'>
+                <select id="exerciseTime" class="time"></select>
+            </td>
+        </tr>
+        <tr>
+            <td align='right'>
+                <label class="timeLabel">Rest:</label>
+            </td>
+            <td align='left'>
+                <select id="exerciseRest" class="time"></select>
+            </td>
+        </tr>
+        <tr>
+            <td align='right'>
+                <label class="timeLabel">Rest between rounds:</label>
+            </td>
+            <td align='left'>
+                <select id="restRound" class="time"></select>
+            </td>
+        </tr>
+    </table>
+    <div>
+        <button id="start" class="pure-button pure-button-active">Start</button>
+        <button id="stop" class="pure-button pure-button-active">Stop</button>
+    </div>
+    <div>
+        <p><span id="timer">0:30</span></p>
+    </div>
+</body>
+
 </html>
