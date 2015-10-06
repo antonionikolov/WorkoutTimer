@@ -7,6 +7,24 @@
 	top: 200px;
 }
 
+#infoRound {
+	position: relative;
+	font-size: 300%;
+	color: #3225E4;
+	vertical-align: middle;
+	padding: 20px;
+	top: 200px;
+}
+
+#infoExercise {
+	position: relative;
+	font-size: 400%;
+	color: #3225E4;
+	vertical-align: middle;
+	padding: 20px;
+	top: 200px;
+}
+
 #timetext {
 	position: relative;
 	font-size: 200%;
