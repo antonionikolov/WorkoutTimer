@@ -1,5 +1,5 @@
 var exerciseTime = [
-	{minutes: '0', seconds: '30'},
+	{minutes: '0', seconds: '3'},
 	{minutes: '1', seconds: '00'},
 	{minutes: '1', seconds: '30'},
 	{minutes: '2', seconds: '00'},
@@ -7,7 +7,7 @@ var exerciseTime = [
 	{minutes: '3', seconds: '00'}
 ];
 var exerciseRest = [
-	{minutes: '0', seconds: '10'},
+	{minutes: '0', seconds: '2'},
 	{minutes: '0', seconds: '15'},
 	{minutes: '0', seconds: '30'},
 	{minutes: '0', seconds: '45'},
@@ -15,7 +15,7 @@ var exerciseRest = [
 	{minutes: '2', seconds: '00'}
 ];
 var restRound = [
-	{minutes: '0', seconds: '30'},
+	{minutes: '0', seconds: '5'},
 	{minutes: '1', seconds: '00'},
 	{minutes: '1', seconds: '30'},
 	{minutes: '2', seconds: '00'},
@@ -34,8 +34,8 @@ $(document).ready(function() {
 		$('#timer').text(exerciseTime[i].minutes + ':' + exerciseTime[i].seconds);
 	});
 	$('#start').click(function() {
-		var workoutDuration = setWorkout();
-		TimeSlider.Start(workoutDuration);
+		var workoutData = setWorkout();
+		TimeSlider.Start(workoutData);
 		$('#start').attr('disabled', true);
 	});
 	$('#stop').click(function() {
@@ -57,21 +57,16 @@ function setCount(to, id) {
 }
 
 function setWorkout() {
-	var	workoutDuration = [],
-		exerciseTimeI   = $('#exerciseTime option:selected').val(),
+	var	exerciseTimeI   = $('#exerciseTime option:selected').val(),
 		exerciseRestI   = $('#exerciseRest option:selected').val(),
 		restRoundI      = $('#restRound option:selected').val(),
 		rounds          = $('#rounds option:selected').val(),
 		exercises       = $('#exercises option:selected').val();
 
-	for (var i = 0; i < rounds; i++) {
-		for (var j = 0; j < exercises; j++) {
-			workoutDuration.push(exerciseTime[exerciseTimeI]);
-			workoutDuration.push(exerciseRest[exerciseRestI]);
-		}
-		workoutDuration.pop();
-		workoutDuration.push(restRound[restRoundI]);
-	}
-	workoutDuration.pop();
-	return workoutDuration;
+	return new WorkoutData(	rounds,
+							exercises,
+							exerciseTime[exerciseTimeI],
+							exerciseRest[exerciseRestI],
+							restRound[restRoundI]
+							);
 }
