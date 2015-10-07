@@ -1,5 +1,5 @@
 var exerciseTime = [
-	{minutes: '0', seconds: '3'},
+	{minutes: '0', seconds: '30'},
 	{minutes: '1', seconds: '00'},
 	{minutes: '1', seconds: '30'},
 	{minutes: '2', seconds: '00'},
@@ -7,7 +7,7 @@ var exerciseTime = [
 	{minutes: '3', seconds: '00'}
 ];
 var exerciseRest = [
-	{minutes: '0', seconds: '2'},
+	{minutes: '0', seconds: '10'},
 	{minutes: '0', seconds: '15'},
 	{minutes: '0', seconds: '30'},
 	{minutes: '0', seconds: '45'},
@@ -15,7 +15,7 @@ var exerciseRest = [
 	{minutes: '2', seconds: '00'}
 ];
 var restRound = [
-	{minutes: '0', seconds: '5'},
+	{minutes: '0', seconds: '30'},
 	{minutes: '1', seconds: '00'},
 	{minutes: '1', seconds: '30'},
 	{minutes: '2', seconds: '00'},
